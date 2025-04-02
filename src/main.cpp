@@ -83,6 +83,9 @@ int main(int argc, char* argv[]) {
       DrawText("Avg Turnaround Time:", 100, preportY + 30 * i, 20, FGCOLOR);
       DrawText(formatTo2(preport.avgTurnAroundTime).c_str(), 400,
                preportY + 30 * i++, 20, FGCOLOR);
+      DrawText("Ticks CPU Idle:", 100, preportY + 30 * i, 20, FGCOLOR);
+      DrawText(std::string(std::to_string(preport.totalTicksIdle)).c_str(), 400,
+               preportY + 30 * i++, 20, FGCOLOR);
       DrawText("CPU Usage:", 100, preportY + 30 * i, 20, FGCOLOR);
       DrawText(formatTo2(preport.cpuUsage).c_str(), 400, preportY + 30 * i++,
                20, FGCOLOR);

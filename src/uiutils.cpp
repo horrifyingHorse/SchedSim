@@ -95,6 +95,7 @@ void GanttChart::draw() {
     DrawLine(chartX, chartY, chartX + w, chartY, FGCOLOR);
     DrawChart(proc.burstCPU, chartY, chartY - 20, CPUGREEN);
     DrawChart(proc.burstIO, chartY, chartY, IORED);
+    DrawArrival(chartY, proc.arrivalTime);
     chartY += 60;
   }
 }
@@ -145,5 +146,16 @@ void GanttChart::DrawChart(std::vector<std::pair<size_t, size_t>> bursts,
       color = SKYBLUE;
     }
     DrawRectangleRec(r, color);
+  }
+}
+
+void GanttChart::DrawArrival(size_t chartY, size_t aT) {
+  float x = chartX + aT * units;
+  float y = chartY;
+  Rectangle r = {x, y - 10, 5, 20};
+  DrawRectangleRec(r, SKYBLUE);
+  Vector2 mousePos = GetMousePosition();
+  if (CheckCollisionPointRec(mousePos, r)) {
+    DrawText(std::string(std::to_string(aT)).c_str(), x, y - 30, 20, FGCOLOR);
   }
 }

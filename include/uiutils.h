@@ -37,6 +37,7 @@ class GanttChart {
   GanttChart(Processes&& procs, size_t ticks);
   void setProcs(Processes& procs, size_t ticks);
   void draw();
+  void DrawArrival(size_t chartY, size_t aT);
   size_t draw_performace();
 
  private:

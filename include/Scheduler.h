@@ -124,6 +124,7 @@ typedef struct Performance {
   double cpuUsage = 0;
   double throughput = 0;
   size_t totalTicks = 0;
+  size_t totalTicksIdle = 0;
 } PerformanceReport;
 
 class Device {

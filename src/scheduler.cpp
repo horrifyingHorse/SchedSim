@@ -2,13 +2,13 @@
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
+#include <fstream>
 #include <iostream>
 #include <ostream>
 #include <queue>
 #include <string>
 #include <utility>
 #include <vector>
-#include <fstream>
 
 Process::Process(const std::string& name,
                  size_t at,
@@ -206,6 +206,7 @@ PerformanceReport Device::getPerfReport() {
   pr.totalTicks = ticksCPU;
   pr.avgWaitingTime = avgWaitingTime();
   pr.avgTurnAroundTime = avgTurnAroundTime();
+  pr.totalTicksIdle = ticksCPUIdle;
   return pr;
 }
 
@@ -228,9 +229,7 @@ void Device::CleanUp() {
 
 void Device::Processor() {
   LOG("Time (tick)", "Device", "Process Served")
-  bool executed;
   while (totalProc) {
-    executed = false;
     LOG_TICK(ticksCPU)
     if (isCPUIdle) {
       LOG("\t", "CPU", "-");
@@ -238,15 +237,14 @@ void Device::Processor() {
 
     FreshArrivals();
     if (!isCPUIdle) {
-      executed = true;
       ExecCPU();
     }
+    IODevice();
     if (ToSchedule()) {
       ScheduleProc();
     }
-    IODevice();
 
-    if (!executed && isCPUIdle) {
+    if (isCPUIdle) {
       ticksCPUIdle++;
     }
     ticksCPU++;
@@ -254,6 +252,7 @@ void Device::Processor() {
     LOG("", "", "")
   }
   ticksCPU--;
+  ticksCPUIdle--;
 }
 
 void Device::IODevice() {
