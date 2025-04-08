@@ -55,7 +55,7 @@ SchedSim only supports vim motions like navigation.
 - `h key`: Move to previous Scheduling Algorithm
 - `l key`: Move to next Scheduling Algorithm
 
-> [!NOTE]
+> [!TIP]
 > You can also access a specific Tab by pressing the Tab number associated with that tab.
 
 ## ./history
@@ -66,6 +66,6 @@ The GUI implementation for the same was developed from scratch here: [trials/Sch
 
 ## A `cmake` rant
 > [!TIP]
-> TIP, I am the one that who wants a tip. Enlighten me with why `FetchContent_declare` takes years to perform `git clone` of `raysan5/raylib`. Even if the shallow clone is set to true. I couldn't understant anything that was argued about slow FetchContent on online forums. Although any clever workarounds for the same are aprreciated.
+> TIP, I am the one who wants a tip. Enlighten me with why `FetchContent_declare` takes years to perform `git clone` of `raysan5/raylib`. Even if the shallow clone is set to true. I couldn't understant anything that was argued about slow FetchContent on online forums. Although any clever workarounds for the same are aprreciated.
 >
 > Including the entire source code and the build files of an external dependency in my project's source was the last thing i wanted to do, but here i am 😕
